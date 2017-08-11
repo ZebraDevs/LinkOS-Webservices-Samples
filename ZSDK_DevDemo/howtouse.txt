@@ -1,0 +1,17 @@
+If you encounter the following error, follow the steps below.
+	Target runtime Apache Tomcat v7.0 is not defined
+
+Install Tomcat v7.0.33 or later (The standalone version is recommended over the Windows Service Installer version)
+	Follow the directions found on http://tomcat.apache.org/tomcat-7.0-doc/index.html
+
+In Eclipse:
+	1. Window->Preferences->Server->Runtime Environemnts
+	2. Click Add
+	3. Select Apache v7.0 and Click next
+	4. Click browse and point to your installation of Tomcat
+	5. Ensure the JRE selected is the one container your ZebraCAChain.cer
+	6. Click finish
+	7. Copy the server.xml and your *.p12 file which you generated while configuring the server to your 
+	   Server/Tomcat v7.0.xx Server project which should be in your Package Explorer now.
+	8. Right click on the ZebraWebServicesDeveloperDemo and select Run As->Run on server
+	9. Select the Tomcat server you just installed in eclipse and click Run

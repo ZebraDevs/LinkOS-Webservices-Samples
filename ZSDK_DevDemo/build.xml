@@ -1,0 +1,50 @@
+<project name="Zebra Web Services Developer Demo" default="dist" basedir=".">
+	<description>
+        Zebra Web Service Tomcat WAR
+    </description>
+
+	<property name="webcontent.dir" location="WebContent" />
+	<property name="lib.dir" location="lib" />
+	<property name="lib.tomcat.dir" location="lib_tomcat" />
+	<property name="dist.dir" location="dist" />
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="ant_bin" />
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+		<fileset dir="${lib.tomcat.dir}" includes="*.jar" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${build.dir}/classes" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${webcontent.dir}/WEB-INF/lib" />
+	</target>
+
+	<target name="dist" depends="clean, compile">
+		<copy todir="${webcontent.dir}/WEB-INF/lib">
+			<fileset dir="${lib.dir}" includes="*.jar" />
+		</copy>
+
+		<war destfile="${dist.dir}/ZebraWebServicesDeveloperDemo.war" webxml="${webcontent.dir}/WEB-INF/web.xml" update="true">
+			<classes dir="${build.dir}/classes" />
+			<fileset dir="${webcontent.dir}" excludes="/WEB-INF/web.xml" />
+		</war>
+
+	</target>
+
+	<target name="compile" depends="init">
+
+		<javac source="1.6" target="1.6" srcdir="${src.dir}" destdir="${build.dir}/classes">
+			<classpath refid="build.classpath" />
+		</javac>
+
+	</target>
+
+	<target name="clean">
+		<delete dir="${dist.dir}" />
+		<delete dir="${webcontent.dir}/WEB-INF/lib" />
+		<delete dir="${build.dir}" />
+	</target>
+
+</project>
