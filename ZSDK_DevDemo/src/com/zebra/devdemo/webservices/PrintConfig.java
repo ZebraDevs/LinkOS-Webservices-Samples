@@ -18,7 +18,7 @@ import com.zebra.sdk.remote.comm.RemoteConnection;
 /**
  * Servlet implementation class PrintConfig
  */
-@WebServlet("/WebServicesDevDemo/PrintConfig")
+@WebServlet("/PrintConfig")
 public class PrintConfig extends HttpServlet {
 
 	private static final long serialVersionUID = -5602313335397756250L;
@@ -32,7 +32,7 @@ public class PrintConfig extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			//Get the serial number off the request.
-			String serialNumber = request.getParameter("SerialNumber");
+			String serialNumber = request.getParameter("serialNumber");
 			//Create a RemoteConnection on port 11995
 			RemoteConnection connection = new RemoteConnection(serialNumber, 11995);
 			connection.open();

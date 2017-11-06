@@ -1,17 +1,32 @@
-If you encounter the following error, follow the steps below.
-	Target runtime Apache Tomcat v7.0 is not defined
-
 Install Tomcat v7.0.33 or later (The standalone version is recommended over the Windows Service Installer version)
 	Follow the directions found on http://tomcat.apache.org/tomcat-7.0-doc/index.html
 
 In Eclipse:
-	1. Window->Preferences->Server->Runtime Environemnts
-	2. Click Add
-	3. Select Apache v7.0 and Click next
-	4. Click browse and point to your installation of Tomcat
-	5. Ensure the JRE selected is the one container your ZebraCAChain.cer
-	6. Click finish
-	7. Copy the server.xml and your *.p12 file which you generated while configuring the server to your 
-	   Server/Tomcat v7.0.xx Server project which should be in your Package Explorer now.
-	8. Right click on the ZebraWebServicesDeveloperDemo and select Run As->Run on server
-	9. Select the Tomcat server you just installed in eclipse and click Run
+	1.  Window->Preferences->Server->Runtime Environments
+	2.  Click Add
+	3.  Select Apache v7.0 and Click next
+	4.  Click browse and point to your installation of Tomcat
+	5.  Ensure the JRE selected is 1.7 or later, and has trusted the ZebraCAChain.cer certificate (See top 
+	    level Webservices documentation for more info)
+	6.  Click finish
+	7.  Copy the *.p12 file which you generated while configuring the server to your Server/Tomcat v7.0.xx 
+	    Server project which should be in your Package Explorer now.
+	8.  Open the "server.xml" file in the Server project, and add the <Connector> string that was generated
+	    along with your weblink certificate (See top level Webservices documentation for more info)
+	9.  In the "Servers" tab in Eclipse, double click on your Tomcat server to open the configuration page
+	10.  Navigate to the "Modules" tab (lower left of configuration page)
+	11. Select "Add External Web Module..."
+	12. In the "Document Base" field, use the Browse button to navigate to your project location, and select 
+	    the "WeblinkServlet" folder
+	13. In the "Path" field, enter "/zebra"
+	14. Save the Server configuration
+	15. Right click on the ZebraWebServicesDeveloperDemo and select Run As->Run on server
+	16. Select the Tomcat server you just installed in eclipse and click Run
+	
+On your printer:
+	1.  Set the SGD "weblink.ip.conn1.location" to "https://<FQDN>:443/zebra/weblink/", where <FQDN> is
+	    your development machine's fully qualified domain name on your DNS server
+	2.  Reset the printer
+	3.  The printer should now connect with your development server.  The page located at 
+	    https://localhost/ZebraWebServicesDeveloperDemo/ should show you a list of currently connected
+	    printers.
